@@ -47,6 +47,10 @@ prompt=ChatPromptTemplate.from_messages(
         select * from department where location='Hyderabad'
         Dispalt the employers and their department names
         eg:select * from employess e join department d on e.departmentid=d.id
+
+        Get the employers and departments details 
+        display the employers
+        eg: select e.*,d.* from employees e join department d on e.departmentid=d.id 
         """
         ),
         ("user","{question} ai: ")
@@ -64,3 +68,4 @@ if st.button("Submit",type="primary"):
         response=agent.run(prompt.format_prompt(question=query))
         # response = agent({"input":prompt.format_prompt(question=query)})         
         st.write(response)
+
