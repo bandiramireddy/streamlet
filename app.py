@@ -17,9 +17,9 @@ load_dotenv()
 #Get the secret key
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 
-st.set_page_config(page_title="AI APP TO CHAT WITH SQL DB")
-st.header="ASK ANYTHING ABOUT YOUR DB"
-query=st.text_input("ask question here")
+st.set_page_config(page_title="AI APP TO CHAT WITH SQLLITE DB")
+st.header="ASK ANYTHING ABOUT YOUR DB[Employers and Departments]"
+query=st.text_input("ask question about Employers and Departments")
 # cs="mssql+pymssql://sa:xxxxx@localhost/test"
 # cs="mssql+pymssql://sa:xxxxx@localhost/test"
 # db_engine=sql_toolkit.fromurl(cs)
@@ -41,12 +41,12 @@ prompt=ChatPromptTemplate.from_messages(
         you must query against the connected database,it has total 2 tables,these are employees,department.
         employees table has id, name, position, department, hireDate, salary.It gives the employees information.
         departments table hasid, name, location .This gives department specific information.
-        employees and departments are related by departments column in employees table and name column in department table.
-        As an expert you must use joins whenever required. 
+        employees and departments are related by departmentid column in employees table and ID column in department table.
         
         example queries: select * from employees where department='IT'
         select * from department where location='Hyderabad'
-        select * from employess e join department d on e.department=d.name where e.salary>10000
+        Dispalt the employers and their department names
+        eg:select * from employess e join department d on e.departmentid=d.id
         """
         ),
         ("user","{question} ai: ")
